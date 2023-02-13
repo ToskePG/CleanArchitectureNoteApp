@@ -4,7 +4,7 @@ import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.model.InvalidNo
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.model.Note
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.repository.NoteRepository
 
-class AddNoteUseCase(
+class AddNote(
     private val repository: NoteRepository
 ) {
     @Throws(InvalidNoteException::class)

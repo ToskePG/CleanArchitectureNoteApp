@@ -5,17 +5,15 @@ import androidx.room.Room
 import com.plcoding.cleanarchitecturenoteapp.feature_note.data.data_source.NoteDatabase
 import com.plcoding.cleanarchitecturenoteapp.feature_note.data.repository.NoteRepositoryImpl
 import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.repository.NoteRepository
-import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.use_cases.AddNoteUseCase
-import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.use_cases.DeleteNoteUseCase
-import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.use_cases.GetNotesUseCase
-import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.use_cases.NoteUseCases
+import com.plcoding.cleanarchitecturenoteapp.feature_note.domain.use_cases.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(Singleton::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
@@ -38,9 +36,10 @@ object AppModule {
     @Singleton
     fun providesNoteUseCases(repository: NoteRepository): NoteUseCases{
         return NoteUseCases(
-            getNotes = GetNotesUseCase(repository),
-            deleteNote = DeleteNoteUseCase(repository),
-            addNote = AddNoteUseCase(repository)
+            getNotes = GetNotes(repository),
+            deleteNote = DeleteNote(repository),
+            addNote = AddNote(repository),
+            getNote = GetNote(repository)
         )
     }
 }
